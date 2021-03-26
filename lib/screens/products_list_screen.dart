@@ -3,6 +3,8 @@ import 'package:my_shop_app/components/product_grid_item.dart';
 import 'package:my_shop_app/data/models/product.dart';
 
 class ProductsListScreen extends StatelessWidget {
+  static const String route = '/products';
+
   final List<Product> loadedProducts = [
     Product(
       id: 'p1',
