@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop_app/screens/products_list_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: ProductsListScreen(),
     );
   }
 }
