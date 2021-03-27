@@ -3,26 +3,31 @@ import 'package:my_shop_app/components/products_grid_list.dart';
 import 'package:my_shop_app/data/providers/products_provider.dart';
 import 'package:provider/provider.dart';
 
-class ProductsListScreen extends StatelessWidget {
+class ProductsListScreen extends StatefulWidget {
   static const String route = '/products';
 
-  void changeShowFavoritesFilter(
-      ProductsProvider productsProvider, bool onlyFavorites) {
-    productsProvider.filterByFavorites(onlyFavorites);
+  @override
+  _ProductsListScreenState createState() => _ProductsListScreenState();
+}
+
+class _ProductsListScreenState extends State<ProductsListScreen> {
+  bool _showOnlyFavorites = false;
+
+  void changeShowFavoritesFilter(bool onlyFavorites) {
+    setState(() {
+      _showOnlyFavorites = onlyFavorites;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final ProductsProvider productsProvider =
-        Provider.of<ProductsProvider>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Shop'),
         actions: [
           PopupMenuButton(
             onSelected: (int selectedValue) {
-              changeShowFavoritesFilter(productsProvider, selectedValue == 0);
+              changeShowFavoritesFilter(selectedValue == 0);
             },
             icon: Icon(Icons.more_vert),
             itemBuilder: (_) => [
@@ -32,7 +37,9 @@ class ProductsListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ProductsGridList(),
+      body: ProductsGridList(
+        showOnlyFavorites: _showOnlyFavorites,
+      ),
     );
   }
 }

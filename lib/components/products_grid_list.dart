@@ -5,10 +5,16 @@ import 'package:my_shop_app/data/providers/products_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProductsGridList extends StatelessWidget {
+  final bool showOnlyFavorites;
+
+  ProductsGridList({@required this.showOnlyFavorites});
+
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
-    final List<Product> loadedProducts = productsProvider.products;
+    final List<Product> loadedProducts = showOnlyFavorites
+        ? productsProvider.onlyFavoriteProducts
+        : productsProvider.products;
 
     return GridView.builder(
       padding: const EdgeInsets.all(10),
