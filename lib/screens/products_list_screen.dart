@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop_app/components/products_grid_list.dart';
-import 'package:my_shop_app/data/providers/products_provider.dart';
-import 'package:provider/provider.dart';
 
 class ProductsListScreen extends StatefulWidget {
   static const String route = '/products';
