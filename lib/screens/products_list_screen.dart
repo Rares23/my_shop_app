@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_shop_app/components/badge.dart';
 import 'package:my_shop_app/components/products_grid_list.dart';
 import 'package:my_shop_app/data/providers/cart_provider.dart';
+import 'package:my_shop_app/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProductsListScreen extends StatefulWidget {
@@ -20,6 +21,10 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
     });
   }
 
+  void openCartScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(CartScreen.route);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +32,16 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
         title: const Text('My Shop'),
         actions: [
           Consumer<CartProvider>(
-            builder: (context, cartProvider, _) => Badge(
-                child: IconButton(
-                  icon: Icon(Icons.shopping_cart),
-                  onPressed: () {},
-                ),
-                value: cartProvider.cartItemsCount.toString()),
+            builder: (context, cartProvider, child) => Badge(
+              child: child,
+              value: cartProvider.cartItemsCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                openCartScreen(context);
+              },
+            ),
           ),
           PopupMenuButton(
             onSelected: (int selectedValue) {
