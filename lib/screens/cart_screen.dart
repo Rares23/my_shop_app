@@ -7,6 +7,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Cart'),
@@ -14,24 +15,37 @@ class CartScreen extends StatelessWidget {
       body: Column(
         children: [
           Card(
-            margin: EdgeInsets.all(6),
-            child: Row(
-              children: [
-                Text(
-                  'Total',
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Chip(
-                  label: Consumer<CartProvider>(
-                    builder: (context, cartProvider, child) => Text(
-                      cartProvider.totalAmount.toString(),
+            margin: EdgeInsets.all(16),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Total',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Spacer(),
+                  Chip(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    label: Text(
+                      '\$${cartProvider.totalAmount}',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('ORDER NOW'),
+                  ),
+                ],
+              ),
             ),
           )
         ],
