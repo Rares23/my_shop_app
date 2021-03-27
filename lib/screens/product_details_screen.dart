@@ -13,7 +13,8 @@ class ProductDetailsScreen extends StatelessWidget {
     final productId = (ModalRoute.of(context).settings.arguments
         as Map<String, String>)['id'];
 
-    final productsProvider = Provider.of<ProductsProvider>(context);
+    final productsProvider =
+        Provider.of<ProductsProvider>(context, listen: false);
     final Product selectedProduct = productsProvider.getWhereId(productId);
 
     return Scaffold(
