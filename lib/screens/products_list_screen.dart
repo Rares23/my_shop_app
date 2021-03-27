@@ -34,7 +34,7 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
           Consumer<CartProvider>(
             builder: (context, cartProvider, child) => Badge(
               child: child,
-              value: cartProvider.cartItemsCount.toString(),
+              value: cartProvider.cartItemsQuantity.toString(),
             ),
             child: IconButton(
               icon: Icon(Icons.shopping_cart),

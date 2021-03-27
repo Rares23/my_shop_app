@@ -8,7 +8,11 @@ class CartProvider with ChangeNotifier {
     return {..._cartItems};
   }
 
-  int get cartItemsCount {
+  List<CartItem> get cartItemsList {
+    return [...cartItems.values];
+  }
+
+  int get cartItemsQuantity {
     int count = 0;
     _cartItems.forEach((key, value) {
       count += value.quantity;
