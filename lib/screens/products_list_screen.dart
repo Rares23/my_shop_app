@@ -64,7 +64,7 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
         showOnlyFavorites: _showOnlyFavorites,
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.list),
+        child: Icon(Icons.credit_card),
         onPressed: () {
           openOrdersScreen(context);
         },
