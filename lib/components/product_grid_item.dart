@@ -23,6 +23,13 @@ class ProductGridItem extends StatelessWidget {
     cartProvider.addItem(id, price, title);
   }
 
+  void _undoAddProductAction(
+    CartProvider cartProvider,
+    String productId,
+  ) {
+    cartProvider.removeSingleItem(productId);
+  }
+
   @override
   Widget build(BuildContext context) {
     final Product product = Provider.of<Product>(context, listen: false);
@@ -70,9 +77,14 @@ class ProductGridItem extends StatelessWidget {
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text("Product \"${product.title}\" added!"),
-                    duration: Duration(seconds: 2),
-                  ),
+                      content: Text("Product \"${product.title}\" added!"),
+                      duration: Duration(seconds: 2),
+                      action: SnackBarAction(
+                        label: 'UNDO',
+                        onPressed: () {
+                          _undoAddProductAction(cartProvider, product.id);
+                        },
+                      )),
                 );
               },
             ),
