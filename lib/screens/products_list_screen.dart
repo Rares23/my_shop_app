@@ -3,6 +3,7 @@ import 'package:my_shop_app/components/badge.dart';
 import 'package:my_shop_app/components/products_grid_list.dart';
 import 'package:my_shop_app/data/providers/cart_provider.dart';
 import 'package:my_shop_app/screens/cart_screen.dart';
+import 'package:my_shop_app/screens/orders_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProductsListScreen extends StatefulWidget {
@@ -23,6 +24,10 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
 
   void openCartScreen(BuildContext context) {
     Navigator.of(context).pushNamed(CartScreen.route);
+  }
+
+  void openOrdersScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(OrdersScreen.route);
   }
 
   @override
@@ -57,6 +62,12 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
       ),
       body: ProductsGridList(
         showOnlyFavorites: _showOnlyFavorites,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.list),
+        onPressed: () {
+          openOrdersScreen(context);
+        },
       ),
     );
   }
