@@ -67,6 +67,13 @@ class ProductGridItem extends StatelessWidget {
                   product.title,
                   product.price,
                 );
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Product \"${product.title}\" added!"),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
               },
             ),
           ),
