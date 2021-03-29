@@ -11,27 +11,28 @@ class UserProductsScreen extends StatelessWidget {
     final ProductsProvider productsProvider =
         Provider.of<ProductsProvider>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Your Products'),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {},
-            )
-          ],
-        ),
-        body: Padding(
-            padding: EdgeInsets.all(8),
-            child: ListView.builder(
-              itemCount: productsProvider.products.length,
-              itemBuilder: (context, index) {
-                return ChangeNotifierProvider.value(
-                  value: productsProvider.products[index],
-                  builder: (context, child) {
-                    return UserProductListItemView();
-                  },
-                );
+      appBar: AppBar(
+        title: Text('Your Products'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Container(
+        child: ListView.builder(
+          itemCount: productsProvider.products.length,
+          itemBuilder: (context, index) {
+            return ChangeNotifierProvider.value(
+              value: productsProvider.products[index],
+              builder: (context, child) {
+                return UserProductListItemView();
               },
-            )));
+            );
+          },
+        ),
+      ),
+    );
   }
 }

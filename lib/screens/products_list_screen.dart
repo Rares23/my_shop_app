@@ -4,6 +4,7 @@ import 'package:my_shop_app/components/products_grid_list.dart';
 import 'package:my_shop_app/data/providers/cart_provider.dart';
 import 'package:my_shop_app/screens/cart_screen.dart';
 import 'package:my_shop_app/screens/orders_screen.dart';
+import 'package:my_shop_app/screens/user_products_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProductsListScreen extends StatefulWidget {
@@ -28,6 +29,10 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
 
   void openOrdersScreen(BuildContext context) {
     Navigator.of(context).pushNamed(OrdersScreen.route);
+  }
+
+  void openUserProductsScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(UserProductsScreen.route);
   }
 
   @override
@@ -63,11 +68,23 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
       body: ProductsGridList(
         showOnlyFavorites: _showOnlyFavorites,
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.credit_card),
-        onPressed: () {
-          openOrdersScreen(context);
-        },
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            child: Icon(Icons.credit_card),
+            onPressed: () {
+              openOrdersScreen(context);
+            },
+          ),
+          SizedBox(height: 16),
+          FloatingActionButton(
+            child: Icon(Icons.list_alt),
+            onPressed: () {
+              openUserProductsScreen(context);
+            },
+          ),
+        ],
       ),
     );
   }
