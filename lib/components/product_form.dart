@@ -6,12 +6,49 @@ class ProductForm extends StatefulWidget {
 }
 
 class _ProductFormState extends State<ProductForm> {
-  final String _id;
-  String _title;
-  String _description;
+  FocusNode _priceFocusNode = FocusNode();
+  FocusNode _descriptionFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Form(
+      child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 16,
+        ),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Title',
+              ),
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(_priceFocusNode);
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Price',
+              ),
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(_descriptionFocusNode);
+              },
+              focusNode: _priceFocusNode,
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Description',
+              ),
+              textInputAction: TextInputAction.done,
+              onFieldSubmitted: (_) {},
+              focusNode: _descriptionFocusNode,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

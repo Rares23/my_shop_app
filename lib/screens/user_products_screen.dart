@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop_app/components/user_product_list_item_view.dart';
 import 'package:my_shop_app/data/providers/products_provider.dart';
+import 'package:my_shop_app/screens/create_product_screen.dart';
 import 'package:provider/provider.dart';
 
 class UserProductsScreen extends StatelessWidget {
   static const route = '/user-products';
+
+  void _openCreateProductScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(CreateProductScreen.route);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,9 @@ class UserProductsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () {
+              _openCreateProductScreen(context);
+            },
           )
         ],
       ),
