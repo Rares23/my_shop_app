@@ -10,6 +10,14 @@ class _ProductFormState extends State<ProductForm> {
   FocusNode _descriptionFocusNode = FocusNode();
 
   @override
+  void dispose() {
+    _priceFocusNode.dispose();
+    _descriptionFocusNode.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       child: SingleChildScrollView(
@@ -42,7 +50,8 @@ class _ProductFormState extends State<ProductForm> {
               decoration: InputDecoration(
                 labelText: 'Description',
               ),
-              textInputAction: TextInputAction.done,
+              maxLines: 3,
+              keyboardType: TextInputType.multiline,
               onFieldSubmitted: (_) {},
               focusNode: _descriptionFocusNode,
             ),
