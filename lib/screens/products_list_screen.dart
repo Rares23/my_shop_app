@@ -72,7 +72,6 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           // FloatingActionButton(
-          //   key: ValueKey('orders'),
           //   child: Icon(Icons.credit_card),
           //   onPressed: () {
           //     openOrdersScreen(context);
@@ -80,7 +79,6 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
           // ),
           // SizedBox(height: 16),
           FloatingActionButton(
-            key: ValueKey('user_products'),
             child: Icon(Icons.list_alt),
             onPressed: () {
               openUserProductsScreen(context);

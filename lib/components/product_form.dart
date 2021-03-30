@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop_app/data/models/product.dart';
 
 class ProductForm extends StatefulWidget {
   @override
@@ -10,11 +11,19 @@ class _ProductFormState extends State<ProductForm> {
   final FocusNode _descriptionFocusNode = FocusNode();
   final FocusNode _imageUrlFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
+  final _form = GlobalKey<FormState>();
+
+  Product product =
+      Product(id: null, title: '', price: 0, description: '', imageUrl: '');
 
   void _updateImageUrl() {
     if (!_imageUrlFocusNode.hasFocus) {
       setState(() {});
     }
+  }
+
+  void _saveForm() {
+    _form.currentState.save();
   }
 
   @override
@@ -37,6 +46,7 @@ class _ProductFormState extends State<ProductForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _form,
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           vertical: 8,
@@ -52,6 +62,14 @@ class _ProductFormState extends State<ProductForm> {
               onFieldSubmitted: (_) {
                 FocusScope.of(context).requestFocus(_priceFocusNode);
               },
+              onSaved: (value) {
+                product = Product(
+                    title: value,
+                    id: product.id,
+                    price: product.price,
+                    description: product.description,
+                    imageUrl: product.imageUrl);
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -60,6 +78,14 @@ class _ProductFormState extends State<ProductForm> {
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (_) {
                 FocusScope.of(context).requestFocus(_descriptionFocusNode);
+              },
+              onSaved: (value) {
+                product = Product(
+                    title: product.title,
+                    id: product.id,
+                    price: double.parse(value),
+                    description: product.description,
+                    imageUrl: product.imageUrl);
               },
               focusNode: _priceFocusNode,
             ),
@@ -71,6 +97,14 @@ class _ProductFormState extends State<ProductForm> {
               keyboardType: TextInputType.multiline,
               onFieldSubmitted: (_) {},
               focusNode: _descriptionFocusNode,
+              onSaved: (value) {
+                product = Product(
+                    title: product.title,
+                    id: product.id,
+                    price: product.price,
+                    description: value,
+                    imageUrl: product.imageUrl);
+              },
             ),
             Row(
               children: [
@@ -92,9 +126,19 @@ class _ProductFormState extends State<ProductForm> {
                     maxLines: 3,
                     keyboardType: TextInputType.url,
                     textInputAction: TextInputAction.done,
-                    onFieldSubmitted: (_) {},
+                    onFieldSubmitted: (_) {
+                      _saveForm();
+                    },
                     controller: _imageUrlController,
                     focusNode: _imageUrlFocusNode,
+                    onSaved: (value) {
+                      product = Product(
+                          title: product.title,
+                          id: product.id,
+                          price: product.price,
+                          description: product.description,
+                          imageUrl: value);
+                    },
                   ),
                 ),
               ],
