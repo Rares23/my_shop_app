@@ -6,13 +6,30 @@ class ProductForm extends StatefulWidget {
 }
 
 class _ProductFormState extends State<ProductForm> {
-  FocusNode _priceFocusNode = FocusNode();
-  FocusNode _descriptionFocusNode = FocusNode();
+  final FocusNode _priceFocusNode = FocusNode();
+  final FocusNode _descriptionFocusNode = FocusNode();
+  final FocusNode _imageUrlFocusNode = FocusNode();
+  final _imageUrlController = TextEditingController();
+
+  void _updateImageUrl() {
+    if (!_imageUrlFocusNode.hasFocus) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    _imageUrlFocusNode.addListener(_updateImageUrl);
+    super.initState();
+  }
 
   @override
   void dispose() {
+    _imageUrlFocusNode.removeListener(_updateImageUrl);
     _priceFocusNode.dispose();
     _descriptionFocusNode.dispose();
+    _imageUrlFocusNode.dispose();
+    _imageUrlController.dispose();
 
     super.dispose();
   }
@@ -54,6 +71,33 @@ class _ProductFormState extends State<ProductForm> {
               keyboardType: TextInputType.multiline,
               onFieldSubmitted: (_) {},
               focusNode: _descriptionFocusNode,
+            ),
+            Row(
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  margin: EdgeInsets.only(top: 8, right: 10),
+                  child: _imageUrlController.text.isEmpty
+                      ? Text('Set Image')
+                      : Container(
+                          child: Image.network(_imageUrlController.text),
+                        ),
+                ),
+                Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Image URL',
+                    ),
+                    maxLines: 3,
+                    keyboardType: TextInputType.url,
+                    textInputAction: TextInputAction.done,
+                    onFieldSubmitted: (_) {},
+                    controller: _imageUrlController,
+                    focusNode: _imageUrlFocusNode,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
