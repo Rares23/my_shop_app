@@ -23,7 +23,10 @@ class _ProductFormState extends State<ProductForm> {
   }
 
   void _saveForm() {
-    _form.currentState.save();
+    bool isValid = _form.currentState.validate();
+    if (isValid) {
+      _form.currentState.save();
+    }
   }
 
   @override
@@ -62,6 +65,12 @@ class _ProductFormState extends State<ProductForm> {
               onFieldSubmitted: (_) {
                 FocusScope.of(context).requestFocus(_priceFocusNode);
               },
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please fill the title';
+                }
+                return null; // input is correct
+              },
               onSaved: (value) {
                 product = Product(
                     title: value,
@@ -78,6 +87,12 @@ class _ProductFormState extends State<ProductForm> {
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (_) {
                 FocusScope.of(context).requestFocus(_descriptionFocusNode);
+              },
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please fill the price';
+                }
+                return null;
               },
               onSaved: (value) {
                 product = Product(
