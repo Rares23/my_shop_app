@@ -11,7 +11,7 @@ class Api {
   }
 
   // create future example
-  Future futureTest() {
+  Future<String> futureTest() {
     return Future(() {
       return 'Hello';
     });
