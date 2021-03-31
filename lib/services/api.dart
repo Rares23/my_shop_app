@@ -16,4 +16,8 @@ class Api {
       return 'Hello';
     }).then((value) => null).catchError((error) => throw error);
   }
+
+  Future<String> asyncTest() async {
+    await futureTest();
+  }
 }
