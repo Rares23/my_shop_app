@@ -20,4 +20,11 @@ class Api {
   Future<String> asyncTest() async {
     await futureTest();
   }
+
+  //THIS SHOULD GO IN STATEFULL WIDGETS
+  void forInitState() {
+    Future.delayed(Duration.zero).then((_) {
+      //use providers context here
+    });
+  }
 }
