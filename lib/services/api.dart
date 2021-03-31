@@ -9,4 +9,11 @@ class Api {
     Uri uri = Uri.parse(url, null);
     http.post(uri, body: json.encode({})).then((response) => {});
   }
+
+  // create future example
+  Future futureTest() {
+    return Future(() {
+      return 'Hello';
+    });
+  }
 }
