@@ -14,6 +14,6 @@ class Api {
   Future<String> futureTest() {
     return Future(() {
       return 'Hello';
-    });
+    }).then((value) => null).catchError((error) => throw error);
   }
 }
