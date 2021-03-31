@@ -27,4 +27,9 @@ class Api {
       //use providers context here
     });
   }
+
+  //YOU CAN USE FutureBuilde in widgets
+  void futureBuilderTest() {
+    // return FutureBuilder();
+  }
 }
