@@ -32,9 +32,9 @@ class Utils {
   }
 
   void customCatch() {
-    try {} on XXXExcetpoion catch (error) {}
+    // try {} on XXXExcetpoion catch (error) {} catch(error) {}
   }
 
   // Using Storage for saving settings and user data
-
+  void saveAndGetStorageValues() {}
 }

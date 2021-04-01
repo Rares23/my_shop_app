@@ -9,27 +9,4 @@ class Api {
     Uri uri = Uri.parse(url, null);
     http.post(uri, body: json.encode({})).then((response) => {});
   }
-
-  // create future example
-  Future<String> futureTest() {
-    return Future(() {
-      return 'Hello';
-    }).then((value) => null).catchError((error) => throw error);
-  }
-
-  Future<String> asyncTest() async {
-    await futureTest();
-  }
-
-  //THIS SHOULD GO IN STATEFULL WIDGETS
-  void forInitState() {
-    Future.delayed(Duration.zero).then((_) {
-      //use providers context here
-    });
-  }
-
-  //YOU CAN USE FutureBuilde in widgets
-  void futureBuilderTest() {
-    // return FutureBuilder();
-  }
 }
