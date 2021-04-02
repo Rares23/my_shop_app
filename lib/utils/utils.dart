@@ -41,4 +41,35 @@ class Utils {
   void saveAndGetStorageValues() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
   }
+
+  void useAnimation() {
+    // AnimationController controller;
+    // Animation<Size> heightAnimation;
+    // use with SingleTickerProviderMixed...
+    // AnimationController(vsync: this, duration: Duration(300))
+    // heightAnimation = Tween<Size>(begin: ,end:).animate(CurvedAnimation(parent: controller, curve: Curves.linear));
+    //
+    //heightAnimation.addListener(() => setState((){}));
+    //controller.dispose()
+    //heightAnimation.dispose();
+    //
+    // controller.forward();
+    //
+    // controller.reverse();
+    //
+    // Container( height: BoxContraints(minHeight: heightAnimation.value.height))
+    //
+    // You can use AnimateBuilder
+    //
+    // AnimatedContainerWidget
+    //
+    // FadeTransitionWidget
+    //
+    // use Hero for transitions between screens
+    //
+    //
+    // CustomScrollView hide/show appbar
+    // with slivers SliverAppBar(SliverAppBar(expandedHeight:, pinned: true, flexibleSpace: FlexibleSpaceBar(title: appBarTitle, background: ))),
+    // SliverList( delegate: SliverChildLIstDelegate())
+  }
 }
