@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Utils {
   // create future example
   Future<String> futureTest() {
@@ -36,5 +38,7 @@ class Utils {
   }
 
   // Using Storage for saving settings and user data
-  void saveAndGetStorageValues() {}
+  void saveAndGetStorageValues() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+  }
 }
